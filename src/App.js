@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import React, { useState, useContext } from "react";
 import logo from "./logo.svg";
 import { Navbar, Nav, NavDropdown, Button, Jumbotron } from "react-bootstrap";
@@ -9,7 +10,7 @@ import axios from "axios";
 // 라우팅을 하기 위해서 app.js , index.js 에 라우팅 셋팅을 해준다.
 import { Link, Route, Switch } from "react-router-dom";
 
-let 재고context = React.createContext();
+export let 재고context = React.createContext();
 
 function App() {
   let [shoes, setShoes] = useState(Data);

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
-import "./Detail.css";
+import { 재고context } from "./App.js";
 
 let 박스 = styled.div`
   padding: 20px;
