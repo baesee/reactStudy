@@ -20,7 +20,7 @@ function Detail(props) {
   let [inputValue, setInputValue] = useState("");
   let 재고 = useContext(재고context);
 
-  // lifeCyle hook
+  // lifeCyle hook..
   useEffect(() => {
     //컴포넌트가 생성될떄 ajax로 값을 불러올떄
     axios.get();
