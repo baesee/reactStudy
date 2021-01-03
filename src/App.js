@@ -7,6 +7,7 @@ import "./App.css";
 import Data from "./data.js";
 import Detail from "./Detail.js";
 import axios from "axios";
+import Cart from "./Cart.js";
 // 라우팅을 하기 위해서 app.js , index.js 에 라우팅 셋팅을 해준다.
 import { Link, Route, Switch } from "react-router-dom";
 
@@ -97,7 +98,13 @@ function App() {
           </div>
         </Route>
         <Route path="/detail/:id">
-          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+          <재고context.Provider value={재고}>
+            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+          </재고context.Provider>
+        </Route>
+
+        <Route path="/cart">
+          <Cart />
         </Route>
 
         <Route path="/:id">
@@ -133,6 +140,9 @@ function ShoesItem(props) {
       <h4>
         {props.shoes.content} & {props.shoes.price}
       </h4>
+      {/* 
+      {재고[0]}!!!
+      */}
       <Test></Test>
     </div>
   );
@@ -140,7 +150,7 @@ function ShoesItem(props) {
 
 function Test() {
   let 재고 = useContext(재고context);
-  return <p>재고 : </p>;
+  return <p>재고 ::: {재고}</p>;
 }
 
 export default App;
