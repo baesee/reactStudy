@@ -1,12 +1,18 @@
 /* eslint-disable */
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, lazy, Suspense } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import logo from "./logo.svg";
 import { Navbar, Nav, NavDropdown, Button, Jumbotron } from "react-bootstrap";
 import "./App.css";
 import Data from "./data.js";
-import Detail from "./Detail.js";
+
+// 필요시에만 임토프 될 수 있도록 lazy + Suspense를 이용 > 퍼포먼스 효율을 위함
+// import Detail from "./Detail.js";
+let Detail = lazy(() => {
+  return import("./Detail.js");
+}); // es6 dynamic import
+
 import axios from "axios";
 import Cart from "./Cart.js";
 // 라우팅을 하기 위해서 app.js , index.js 에 라우팅 셋팅을 해준다.
@@ -100,7 +106,9 @@ function App() {
         </Route>
         <Route path="/detail/:id">
           <재고context.Provider value={재고}>
-            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+            <Suspense fallback={<div>로딩중이에요</div>}>
+              <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+            </Suspense>
           </재고context.Provider>
         </Route>
 
