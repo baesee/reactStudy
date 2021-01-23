@@ -25,7 +25,9 @@ function Cart(props) {
                   {/* Redux 에서 데이터 수정요청할땐 props.deispatch()를 사용 */}
                   <button
                     onClick={() => {
-                      props.dispatch({ type: "수량증가" });
+                      props.dispatch({
+                        type: "수량증가"
+                      });
                     }}
                   >
                     +

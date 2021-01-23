@@ -46,7 +46,11 @@ function reducer2(state = alert초기값, 액션) {
 
 // 데이터 수정은 리듀서를 이용해서..
 function reducer(state = 초기값, 액션) {
-  if (액션.type === "수량증가") {
+  if (액션.type === "항목추가") {
+    let copy = [...state];
+    copy.push(액션.payload);
+    return copy;
+  } else if (액션.type === "수량증가") {
     let copy = [...state];
     copy[0].quan++;
     return copy;

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Navbar, Nav, NavDropdown, Button, Jumbotron } from "react-bootstrap";
 import { 재고context } from "./App.js";
 import { CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
 
 let 박스 = styled.div`
   padding: 20px;
@@ -91,6 +92,11 @@ function Detail(props) {
               var newArray = [...props.재고];
               newArray[0] = newArray[0] - 1;
               props.재고변경(newArray);
+              props.dispatch({
+                type: "항목추가",
+                payload: { id: 2, name: "새로운 상품", quan: 1 }
+              });
+              history.push("/cart");
             }}
           >
             주문하기
@@ -109,7 +115,7 @@ function Detail(props) {
               history.push("/");
             }}
           >
-            홈으로
+            alert닫기 홈으로
           </button>
         </div>
       </div>
@@ -176,4 +182,15 @@ function Info(props) {
   return <p>재고 : {props.재고[0]}</p>;
 }
 
-export default Detail;
+function state를props화(state) {
+  //index.js 에 있는 store안에 있던 redux state 데이터를 가져와서 props로 변환해준다고 봐야함.
+  // porps화 한다. > props로 바꿔서 써야만한다.
+  console.log(state);
+  return {
+    state: state.reducer,
+    alert열렸니: state.reducer2
+  };
+}
+//export default Cart;
+export default connect(state를props화)(Detail);
+//export default Detail;
