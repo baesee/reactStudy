@@ -94,7 +94,11 @@ function Detail(props) {
               props.재고변경(newArray);
               props.dispatch({
                 type: "항목추가",
-                payload: { id: 2, name: "새로운 상품", quan: 1 }
+                payload: {
+                  id: findProudct.id,
+                  name: findProudct.title,
+                  quan: 1
+                }
               });
               history.push("/cart");
             }}

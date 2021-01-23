@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import React, { useState, useContext } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import logo from "./logo.svg";
 import { Navbar, Nav, NavDropdown, Button, Jumbotron } from "react-bootstrap";
 import "./App.css";
@@ -125,9 +126,15 @@ function App() {
 // 1. 컴포넌트로 만들어보자 , 데이터 바인딩까지 , 반복문
 function ShoesItem(props) {
   let 재고 = useContext(재고context);
+  let history = useHistory();
 
   return (
-    <div className="col-md-4">
+    <div
+      className="col-md-4"
+      onClick={() => {
+        history.push("/detail/" + props.shoes.id);
+      }}
+    >
       <img
         src={
           "https://codingapple1.github.io/shop/shoes" +

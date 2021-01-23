@@ -26,7 +26,8 @@ function Cart(props) {
                   <button
                     onClick={() => {
                       props.dispatch({
-                        type: "수량증가"
+                        type: "수량증가",
+                        payload: { id: index }
                       });
                     }}
                   >
@@ -34,7 +35,10 @@ function Cart(props) {
                   </button>
                   <button
                     onClick={() => {
-                      props.dispatch({ type: "수량감소" });
+                      props.dispatch({
+                        type: "수량감소",
+                        payload: { id: index }
+                      });
                     }}
                   >
                     -
