@@ -24,6 +24,24 @@ function Detail(props) {
   let [누른탭, 누른탭변경] = useState(0);
   let [스위치, 스위치변경] = useState(false);
 
+  let { id } = useParams(); // 라우터에서 :id의 값을 담는다.
+
+  useEffect(() => {
+    var arr = localStorage.getItem("watched");
+    if (arr == null) {
+      arr = [];
+    } else {
+      arr = JSON.parse(arr);
+    }
+
+    // Set 자료형은 중북을 허용하지 않기 때문에 if로 조건대신 사용
+    arr.push(id);
+    arr = new Set(arr);
+    arr = [...arr];
+
+    localStorage.setItem("watched", JSON.stringify(arr));
+  }, []);
+
   // lifeCyle hook..
   useEffect(() => {
     //컴포넌트가 생성될떄 ajax로 값을 불러올떄
@@ -44,7 +62,6 @@ function Detail(props) {
     };
   }, [alert]); // alert라는 useState가 변경이 될때에만 useEffect가 동작해라 , []로 할 경우 최초에만 실행된다.
 
-  let { id } = useParams(); // 라우터에서 :id의 값을 담는다.
   let findProudct = props.shoes.find(function(shoes) {
     return shoes.id == id;
   });
